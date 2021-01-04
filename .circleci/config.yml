@@ -4,6 +4,7 @@ jobs:
   create_infrastructure:
     docker:
       - image: amazon/aws-cli
+        environment:
     steps:
       - checkout
       - run:
@@ -13,6 +14,7 @@ jobs:
               --template-file ansible/template.yml \
               --stack-name my-stack
 workflows:
+  context: env_vars
   my_workflow:
     jobs:
       - create_infrastructure
