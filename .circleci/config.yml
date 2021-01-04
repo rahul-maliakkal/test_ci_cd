@@ -9,7 +9,6 @@ jobs:
       - checkout
       - run:
           name: Ensure backend infrastructure exist
-          context: env_vars
           command: |
             aws cloudformation deploy \
               --template-file ansible/template.yml \
@@ -17,4 +16,6 @@ jobs:
 workflows:
   my_workflow:
     jobs:
-      - create_infrastructure
+      - create_infrastructure:
+          context: env_vars
+    
